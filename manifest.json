@@ -1,0 +1,27 @@
+{
+    "manifest_version": 3,
+    "name": "Select",
+    "version": "0.0.1",
+    "description": "remove login and remove unselect",
+    "icons": {
+        "16": "icons/tan16.png",
+        "32": "icons/tan32.png",
+        "48": "icons/tan48.png",
+        "128": "icons/tan128.png"
+    },
+    "action": {
+        "default_popup": "popup/popup.html"
+    },
+    "content_scripts": [
+        {
+            "matches": [
+                "<all_urls>"
+            ],
+            "js": ["content-scripts/content.js"]
+        }
+    ],
+    "background": {
+        "service_worker": "background/background.js"
+    },
+    "permissions": ["storage", "tabs"]
+}
