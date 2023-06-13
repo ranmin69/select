@@ -20,6 +20,10 @@ class Injection {
             item.children[0].style.webkitUserSelect = 'text';
         });
         const body = document.querySelector('body');
+        const content_views = document.querySelector('#content_views');
+        content_views.removeEventListener('copy', (e) => {
+            console.log('移除copy监听成功')
+        })
         body.oncopy = async (e) => {
             try {
                 const text = await navigator.clipboard.readText();
