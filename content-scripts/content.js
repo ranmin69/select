@@ -21,9 +21,9 @@ class Injection {
         });
         const body = document.querySelector('body');
         const content_views = document.querySelector('#content_views');
-        content_views.removeEventListener('copy', (e) => {
-            console.log('移除copy监听成功')
-        })
+        const blog_content_box = document.querySelector('.blog-content-box');
+        content_views.replaceWith(content_views.cloneNode(true))
+        blog_content_box.replaceWith(blog_content_box.cloneNode(true))
         body.oncopy = async (e) => {
             try {
                 const text = await navigator.clipboard.readText();
@@ -45,6 +45,10 @@ let webObj = {};
 const webList = [];
 const storage = chrome.storage.local;
 
+/**
+ * 获取当前插件的 开关 信息
+ * @returns {Promise<unknown>}
+ */
 const getStorage = () => {
     return new Promise((resolve, reject) => {
         storage.get(null, (obj) => {
@@ -52,6 +56,7 @@ const getStorage = () => {
         })
     })
 }
+
 
 const dealWeb = () => {
     for (let objKey in webObj) {
